@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'login_field' => ['required'],
             'password' => ['required', 'string'],
         ];
     }
@@ -40,18 +40,17 @@ class LoginRequest extends FormRequest
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
-
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $auth_field = $this->getAuthField();
+        if (!Auth::attempt($this->only($auth_field, 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
+                $auth_field => __('auth.failed'),
             ]);
         }
 
         RateLimiter::clear($this->throttleKey());
     }
-
 
 
     /**
@@ -61,7 +60,7 @@ class LoginRequest extends FormRequest
      */
     public function ensureIsNotRateLimited(): void
     {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+        if (!RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
             return;
         }
 
@@ -82,6 +81,17 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->input('email')) . '|' . $this->ip());
+    }
+
+    protected function getAuthField()
+    {
+        if (filter_var($this->login_field, FILTER_VALIDATE_EMAIL)) {
+            return 'email';
+        }
+        if (preg_match('/^\+(?:[0-9] ?){6,14}[0-9]$/', $this->login_field)) {
+            return 'mobile_number';
+        }
+        return 'username';
     }
 }
