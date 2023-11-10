@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\EloquentModels\Agency;
 use App\Models\EloquentModels\Location;
 use App\Models\EloquentModels\Trip;
 use Illuminate\Database\Migrations\Migration;
@@ -14,6 +15,7 @@ return new class extends Migration {
     {
         Schema::create('trip_stops', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Agency::class);
             $table->foreignIdFor(Trip::class);
             $table->foreignIdFor(Location::class);
             $table->string('title');

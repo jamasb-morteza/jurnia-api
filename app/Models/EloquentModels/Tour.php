@@ -11,18 +11,29 @@ class Tour extends Model
 
     protected $fillable = [
         'created_by',
+        'agency_id',
         'title',
         'slug',
         'start_date',
         'end_date',
         'about',
         'description',
-        'agency_id'
+        'status',
     ];
 
 
     public function agency()
     {
         return $this->belongsTo(Agency::class, 'agency_id', 'id');
+    }
+
+    public function trips()
+    {
+        return $this->hasMany(Trip::class, 'tour_id', 'id');
+    }
+
+    public function createdByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }

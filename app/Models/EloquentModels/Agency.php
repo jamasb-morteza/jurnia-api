@@ -16,6 +16,7 @@ class Agency extends Model
         'slug',
         'about',
         'description',
+        'status',
         'created_at',
         'updated_at'
     ];
@@ -23,5 +24,15 @@ class Agency extends Model
     public function tours()
     {
         return $this->hasMany(Tour::class, 'agency_id', 'id');
+    }
+
+    public function trips()
+    {
+        return $this->hasManyThrough(Trip::class, Tour::class);
+    }
+
+    public function createdByUser()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 }
