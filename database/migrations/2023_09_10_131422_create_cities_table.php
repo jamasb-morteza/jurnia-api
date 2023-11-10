@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\EloquentModels\Country;
+use App\Models\EloquentModels\Province;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,7 +14,11 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Country::class);
+            $table->foreignIdFor(Province::class);
             $table->timestamps();
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('province_id')->references('id')->on('provinces');
         });
     }
 

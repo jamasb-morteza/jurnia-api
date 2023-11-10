@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\EloquentModels\City;
+use App\Models\EloquentModels\Tour;
+use App\Models\EloquentModels\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,16 +15,20 @@ return new class extends Migration {
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\EloquentModels\User::class, 'created_by');
-            $table->foreignIdFor(\App\Models\EloquentModels\Tour::class);
-            $table->foreignIdFor(\App\Models\EloquentModels\City::class);
+            $table->foreignIdFor(User::class, 'created_by');
+            $table->foreignIdFor(Tour::class);
+            $table->foreignIdFor(City::class, 'src_city_id')->nullable();
             $table->string('title');
             $table->string('slug');
             $table->text('about')->nullable();
             $table->longText('description')->nullable();
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->dateTime('start_date')->nullable()->index();
+            $table->dateTime('end_date')->nullable()->index();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('tour_id')->references('id')->on('tours');
+            $table->foreign('src_city_id')->references('id')->on('cities');
         });
     }
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\EloquentModels\Destination;
 use Illuminate\Http\Request;
 
-class DestinationController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.

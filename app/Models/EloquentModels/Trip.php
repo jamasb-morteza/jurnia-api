@@ -12,7 +12,7 @@ class Trip extends Model
     protected $fillable = [
         'created_by',
         'tour_id',
-        'src_location_id',
+        'src_city_id',
         'title',
         'slug',
         'about',

@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->text('about')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -14,7 +14,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('destinations', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class, 'created_by');
             $table->foreignIdFor(Country::class);
@@ -28,6 +28,12 @@ return new class extends Migration {
             $table->text('about')->nullable();
             $table->longText('description')->nullable();
             $table->timestamps();
+
+
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('country_id')->references('id')->on('countries');
+            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 
