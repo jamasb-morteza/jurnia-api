@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->foreignIdFor(Trip::class);
             $table->foreignIdFor(Location::class);
             $table->string('title');
+            $table->string('status', 32)->nullable()->index();
             $table->dateTime('start_date')->nullable()->index();
             $table->dateTime('end_date')->nullable()->index();
             $table->timestamps();

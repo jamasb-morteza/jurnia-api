@@ -16,7 +16,11 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(Country::class);
             $table->foreignIdFor(Province::class);
+            $table->string('title')->index();
+            $table->string('slug')->index();
+            $table->string('abbr', 5)->index();
             $table->timestamps();
+
             $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('province_id')->references('id')->on('provinces');
         });

@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('slug')->index();
             $table->text('about')->nullable();
             $table->longText('description')->nullable();
+            $table->string('status', 32)->nullable()->index();
             $table->dateTime('start_date')->index()->nullable();
             $table->dateTime('end_date')->index()->nullable();
             $table->timestamps();

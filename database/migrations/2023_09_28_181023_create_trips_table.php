@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->string('slug');
             $table->text('about')->nullable();
             $table->longText('description')->nullable();
+            $table->string('status', 32)->nullable()->index();
             $table->dateTime('start_date')->nullable()->index();
             $table->dateTime('end_date')->nullable()->index();
             $table->timestamps();

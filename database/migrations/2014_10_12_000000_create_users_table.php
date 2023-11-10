@@ -13,15 +13,15 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('first_name', 32)->nullable();
-            $table->string('last_name', 32)->nullable();
-            $table->string('nickname', 32)->nullable();
-            $table->string('username', 32)->nullable()->unique();
-            $table->string('mobile_number', 16)->nullable()->unique(); //+98 938 220 8977   +1 938 220 8977
-            $table->string('email', 128)->nullable()->unique();
-            $table->string('gender', 32)->nullable();
+            $table->string('last_name', 32)->nullable()->index();
+            $table->string('nickname', 32)->nullable()->index();
+            $table->string('username', 32)->nullable()->unique()->index();
+            $table->string('mobile_number', 16)->nullable()->unique()->index(); //+98 938 220 8977   +1 938 220 8977
+            $table->string('email', 128)->nullable()->unique()->index();
+            $table->string('gender', 32)->nullable()->index();
             $table->string('password', 64)->nullable();
-            $table->dateTime('birth_date')->nullable();
-            $table->timestamp('verified_at')->nullable();
+            $table->dateTime('birth_date')->nullable()->index();
+            $table->timestamp('verified_at')->nullable()->index();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->rememberToken();

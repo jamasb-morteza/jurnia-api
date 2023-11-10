@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('slug')->index()->nullable();
             $table->text('about')->nullable();
             $table->longText('description')->nullable();
+            $table->string('status', 32)->nullable()->index();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
