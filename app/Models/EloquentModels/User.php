@@ -51,4 +51,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function setEmailIgnoreFreeLoaderAttribute()
+    {
+        $email = str_replace('.', '', $this->email);
+        $email = str_replace(' ', '', $email);
+        $email = str_replace('+', '', $email);
+        $this->attributes['email_ignore_free_loader'] = $email;
+    }
 }
