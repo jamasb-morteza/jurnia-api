@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('status', 32)->nullable()->index();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users');
         });
     }
 

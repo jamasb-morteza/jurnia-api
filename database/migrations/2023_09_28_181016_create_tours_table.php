@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->dateTime('end_date')->index()->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('agency_id')->references('id')->on('agencies');
         });
     }

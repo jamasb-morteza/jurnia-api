@@ -27,7 +27,7 @@ return new class extends Migration {
             $table->dateTime('end_date')->nullable()->index();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('tour_id')->references('id')->on('tours');
             $table->foreign('src_city_id')->references('id')->on('cities');
         });

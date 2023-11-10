@@ -19,10 +19,10 @@ return new class extends Migration {
             $table->foreignIdFor(User::class, 'created_by');
             $table->foreignIdFor(Country::class);
             $table->foreignIdFor(Province::class);
-            $table->foreignIdFor(City::class, 'created_by')->nullable();
+            $table->foreignIdFor(City::class)->nullable();
             $table->string('title')->index();
             $table->string('slug')->index();
-            $table->point('coordinate')->nullable()->spatialIndex('coordinate');
+            $table->point('coordinate')->nullable();
             $table->decimal('longitude')->nullable()->index();
             $table->decimal('latitude')->nullable()->index();
             $table->text('about')->nullable();
@@ -42,6 +42,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('destinations');
+        Schema::dropIfExists('locations');
     }
 };
