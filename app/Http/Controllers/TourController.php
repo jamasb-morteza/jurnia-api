@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tour;
+use App\Models\EloquentModels\tour;
 use Illuminate\Http\Request;
 
 class TourController extends Controller

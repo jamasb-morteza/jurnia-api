@@ -1,19 +1,22 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\EloquentModels;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Agency extends Model
+class Destination extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'created_by',
         'title',
-        'name',
-        'national_id',
+        'slug',
         'about',
-        'description'
+        'description',
+        'country_id',
+        'province_id',
+        'city_id',
     ];
 }

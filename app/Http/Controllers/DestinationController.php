@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Destination;
+use App\Models\EloquentModels\Destination;
 use Illuminate\Http\Request;
 
 class DestinationController extends Controller

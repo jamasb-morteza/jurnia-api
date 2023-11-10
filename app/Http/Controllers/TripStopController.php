@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TripStop;
+use App\Models\EloquentModels\TripStop;
 use Illuminate\Http\Request;
 
 class TripStopController extends Controller
