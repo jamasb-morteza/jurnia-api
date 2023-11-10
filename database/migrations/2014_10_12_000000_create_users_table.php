@@ -17,7 +17,8 @@ return new class extends Migration {
             $table->string('nickname', 32)->nullable()->index();
             $table->string('username', 32)->nullable()->unique()->index();
             $table->string('mobile_number', 16)->nullable()->unique()->index(); //+98 938 220 8977   +1 938 220 8977
-            $table->string('email', 128)->nullable()->unique()->index();
+            $table->string('email', 255)->nullable()->unique()->index();
+            $table->string('email_ignore_free_loader', 255)->nullable()->unique()->index();
             $table->string('gender', 32)->nullable()->index();
             $table->string('password', 64)->nullable();
             $table->dateTime('birth_date')->nullable()->index();
